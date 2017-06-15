@@ -1,0 +1,39 @@
+
+
+<!-- shared styles for all elements and index.html -->
+<dom-module id="shared-styles">
+  <template>
+    <style>
+      .page-title {
+        @apply(--paper-font-display2);
+      }
+
+      .app-menu {
+          
+        --paper-menu:{
+             text-decoration-color: rgb(122, 91, 61);
+          }
+          
+        --paper-menu-selected-item: {
+          background: rgb(186, 229, 121);
+        }
+          
+          --paper-menu-focused-item	:{
+            background: rgb(186, 229, 121);
+          }
+         
+                    
+      }
+
+      paper-menu a > *, paper-menu paper-item > *, paper-menu paper-icon-item > * {
+        pointer-events: none;
+      }
+
+      @media (max-width: 600px) {
+        .page-title {
+          font-size: 24px!important;
+        }
+      }
+    </style>
+  </template>
+</dom-module>
