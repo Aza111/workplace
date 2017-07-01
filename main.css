@@ -62,3 +62,70 @@ span
     box-shadow: 1px 1px 1px #8b8b8b;
 }
 
+.page-heading
+{
+    font-size: 60px;
+    color: rgb(104, 150, 33)
+}
+
+#URL
+{
+    width: 350px;
+    height: 200px;
+    transition: 1s;
+    margin-left: 0px;
+}
+
+paper-material
+{
+    border: solid 1px #cecdcd
+}
+
+#URL:hover{
+    box-shadow: #d6d6d6 8px  8px; 
+}
+
+    
+.column
+{
+    display: inline-block;
+    width: 400px;
+    height: 500px;
+}
+#firstColumn
+{
+    position: absolute;
+}
+
+#secondColumn
+{
+    position: absolute;
+    margin-left: 500px;
+}
+
+#thirdColumn
+{
+    position: absolute;
+    margin-left: 1000px;
+}
+
+.container
+{
+    padding-bottom: 48px;
+    width: 400px;
+    height: 200px;
+}
+
+#black
+{
+    color: #afafaf;
+    float: right;
+    margin-top: -10px;
+    height: 40px;
+    width: 40px;
+}
+
+#black:hover
+{
+    color: #656565
+}

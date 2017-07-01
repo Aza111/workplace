@@ -79,22 +79,38 @@
                     <section data-route="home" tabindex="-1">
                         
                       <paper-material elevation="1">
-                        <p>This is another card.</p>
+                        <h1 class="page-heading">Welcome!</h1>
+                        <p>This is prototype of working place for students of Nazabayev Intellectual Schools.</p>
+                        <p>On this site you can:</p>
+                        <ul>
+                          <li>Open school journal</li>      
+                          <li>Organize your working place with special split types</li>     
+                          <li>Save your own working place locally to use it again</li>
+                        </ul>
                       </paper-material>
                         
                     </section>
                     <section data-route="journal" tabindex="-1">
                         <div class="siteContainer">
-                            <iframe width="854" height="480" src="https://events.google.com/io/widget/"  class="noSplit"></iframe>
+                            <iframe width="854" height="480" src=""  class="noSplit"></iframe>
                         </div>
                     </section>
-                    <section data-route="add" tabindex="-1">
-                       <paper-material elevation="1">
+                    <section data-route="add" tabindex="-1">           
+                      <paper-material elevation="1" id="URL">
                         <h1>Add link</h1>
-                        <paper-input placeholder="Enter URL"></paper-input>
-                        <paper-button class="button">Add</paper-button>
+                        <paper-input placeholder="Enter URL" id="inputUrl"></paper-input>
+                        <paper-button class="button" onclick="addUrl()">Add</paper-button>
+                        <paper-button class="button" onclick="deleteUrl()">Delete</paper-button>
                        </paper-material>
+                        <div id="firstColumn" class="column">  
+                        </div>    
                        
+                        <div id="secondColumn" class="column">
+                        </div>
+                        
+                        <div id="thirdColumn" class="column">
+                        </div>
+                        
                     </section>
                     <section data-route="make" tabindex="-1">
                        <paper-material elevation="1">
@@ -114,7 +130,101 @@
     
     </paper-drawer-panel>
     </template>
-           <script src="scripts/app.js"></script>
+            <script src="scripts/app.js"></script>
+            <script>
+          var index=0;
+       showUrl(index);
+                
+            function column(n){
+               index++;
+               return index;
+            }
+                 var index1;
+            function showUrl(n){
+         var db = openDatabase('mydb', '1.0', 'WorkingPlace', 1024);
+         var msg;
+         db.transaction(function (tx) {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS URLS (Url)');
+         });
+                
+         db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM URLS', [], function (tx, results) {
+               var len = results.rows.length, i;
+               msg='';
+             		
+               for (i = 0; i < len; i++){
+                  msg = "<div class='container'><paper-material elevation='1' id='URL'><h1><b>" + results.rows.item(i).Url + "</b></h1><paper-icon-button id='black' icon='close'></paper-icon-button></paper-material></div>";
+                index1 = column(n);
+                var select;
+               if (index1%3==1)
+                   {
+                       select='#firstColumn';
+                   }
+                if(index1%3==2)
+                    {
+                        select='#secondColumn'
+                    }
+                 if(index1%3==0)
+                    {
+                        select='#thirdColumn'
+                    }
+                document.querySelector(select).innerHTML +=  msg;
+               }
+                
+            }, null);
+         });
+            
+       };
+                
+            function addUrl(){
+              var inputUrl = document.getElementById('inputUrl');
+               
+              var db = openDatabase('mydb', '1.0', 'WorkingPlace', 1024);
+             var msg;
+             msg='';
+         db.transaction(function (tx) {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS URLS (Url)');
+            tx.executeSql('INSERT INTO URLS (Url) VALUES ("' + inputUrl.value +'")');
+         });
+                 
+         db.transaction(function (tx) {
+                  msg = "<div class='container'><paper-material elevation='1' id='URL'><h1><b>" + inputUrl.value + "</b></h1><paper-icon-button id='black' icon='close'></paper-icon-button></paper-material></div>";
+                   var index1;
+                 index1 = column(index);
+              
+                var select;
+               if (index1%3==1)
+                   {
+                       select='#firstColumn';
+                   }
+                if(index1%3==2)
+                    {
+                        select='#secondColumn';
+                    }
+                 if(index1%3==0)
+                    {
+                        select='#thirdColumn'
+                    }
+                document.querySelector(select).innerHTML +=  msg;
+               
+             });  
+               
+            };
+            
+                
+            function deleteUrl(){
+         var db = openDatabase('mydb', '1.0', 'WorkingPlace', 2 * 1024 * 1024);
+         db.transaction(function (tx) {
+            tx.executeSql('DELETE FROM URLS');
+             document.querySelector('#firstColumn').innerHTML ='';
+             document.querySelector('#secondColumn').innerHTML ='';
+             document.querySelector('#thirdColumn').innerHTML ='';
+             index = 0;
+              });
+            };
+                
+                
+            </script>
 </body>
 
     
