@@ -95,7 +95,19 @@
                             <iframe width="854" height="480" src=""  class="noSplit"></iframe>
                         </div>
                     </section>
-                    <section data-route="add" tabindex="-1">           
+                    
+                <section data-route="make" tabindex="-1">
+                       <paper-material elevation="1">
+                        <h1>Make your own working place</h1>
+                        <h3>Available links</h3>
+                       </paper-material>
+                </section>
+                    
+                    
+                    
+                    
+                    
+                <section data-route="add" tabindex="-1">
                       <paper-material elevation="1" id="URL">
                         <h1>Add link</h1>
                         <paper-input placeholder="Enter URL" id="inputUrl"></paper-input>
@@ -110,15 +122,10 @@
                         
                         <div id="thirdColumn" class="column">
                         </div>
+                </section>
+                    
+                     
                         
-                    </section>
-                    <section data-route="make" tabindex="-1">
-                       <paper-material elevation="1">
-                        <h1>Make your own working place</h1>
-                        <h3>Available links</h3>
-                       </paper-material>
-                       
-                    </section>
                 </iron-pages>
             </div>
             
@@ -131,7 +138,7 @@
     </paper-drawer-panel>
     </template>
             <script src="scripts/app.js"></script>
-            <script>
+<script>
           var index=0;
        showUrl(index);
                 
@@ -153,7 +160,7 @@
                msg='';
              		
                for (i = 0; i < len; i++){
-                  msg = "<div class='container'><paper-material elevation='1' id='URL'><h1><b>" + results.rows.item(i).Url + "</b></h1><paper-icon-button id='black' icon='close'></paper-icon-button></paper-material></div>";
+                  msg = "<div class='container'><a href=" + results.rows.item(i).Url + " onclick='newMyWindow(this.href); return false;'><paper-material elevation='1' id='URL1'><h1><b>" + results.rows.item(i).Url + "</b></h1></paper-material></a><paper-icon-button id='black' icon='close' onclick=closethis('" + results.rows.item(i).Url + "')></paper-icon-button></div>";
                 index1 = column(n);
                 var select;
                if (index1%3==1)
@@ -173,7 +180,7 @@
                 
             }, null);
          });
-            
+           
        };
                 
             function addUrl(){
@@ -184,11 +191,11 @@
              msg='';
          db.transaction(function (tx) {
             tx.executeSql('CREATE TABLE IF NOT EXISTS URLS (Url)');
-            tx.executeSql('INSERT INTO URLS (Url) VALUES ("' + inputUrl.value +'")');
+            tx.executeSql('INSERT INTO URLS (Url) VALUES ("' +inputUrl.value+'")');
          });
                  
          db.transaction(function (tx) {
-                  msg = "<div class='container'><paper-material elevation='1' id='URL'><h1><b>" + inputUrl.value + "</b></h1><paper-icon-button id='black' icon='close'></paper-icon-button></paper-material></div>";
+                  msg = "<div class='container'><a href=" + inputUrl.value + " onclick='newMyWindow(this.href); return false;'><paper-material elevation='1' id='URL1'><h1><b>" + inputUrl.value + "</b></h1></paper-material></a><paper-icon-button id='black' icon='close' onclick=closethis('" + inputUrl.value + "') ></paper-icon-button></div>";
                    var index1;
                  index1 = column(index);
               
@@ -206,9 +213,10 @@
                         select='#thirdColumn'
                     }
                 document.querySelector(select).innerHTML +=  msg;
-               
+                
              });  
-               
+                var seize = document.getElementById("URL1");
+                
             };
             
                 
@@ -223,8 +231,25 @@
               });
             };
                 
+ function newMyWindow(e) {
+  window.open(e, '', 'scrollbars=1,height=980,width='+screen.availWidth);
+};
+    
+function closethis(e) {
+    var db = openDatabase('mydb', '1.0', 'WorkingPlace', 2 * 1024 * 1024);
+    db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM URLS WHERE Url='"+e+"'");
+    document.querySelector('#firstColumn').innerHTML ='';
+    document.querySelector('#secondColumn').innerHTML ='';
+    document.querySelector('#thirdColumn').innerHTML ='';
+    index = 0;
+    showUrl(index);        
+              }); 
+};
+</script>
                 
-            </script>
+                
+           
 </body>
 
     

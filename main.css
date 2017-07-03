@@ -72,17 +72,24 @@ span
 {
     width: 350px;
     height: 200px;
-    transition: 1s;
     margin-left: 0px;
+}
+
+#URL1
+{
+    width: 350px;
+    height: 200px;
+    transition: .4s;
+    margin-left: 0px;
+}
+
+#URL1:hover{
+    box-shadow: #8b8b8b 2px 2px 10px 3px; 
 }
 
 paper-material
 {
     border: solid 1px #cecdcd
-}
-
-#URL:hover{
-    box-shadow: #d6d6d6 8px  8px; 
 }
 
     
@@ -120,7 +127,7 @@ paper-material
 {
     color: #afafaf;
     float: right;
-    margin-top: -10px;
+    margin-top: -250px;
     height: 40px;
     width: 40px;
 }
@@ -129,3 +136,4 @@ paper-material
 {
     color: #656565
 }
+
