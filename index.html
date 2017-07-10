@@ -5,6 +5,7 @@
    
     <title>Working place</title>
     <meta http-equiv="Content-Type" content="text/html">
+    <link rel="shortcut icon" type="image/x-icon" href="images/logo.png">
     <link rel="stylesheet" href="main.css">
     <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
     <script src="bower_components/webcomponentsjs/HTMLImports.js"></script>
@@ -21,7 +22,7 @@
             
             <!-- Drawer Toolbar -->
             <paper-toolbar id="drawerToolbar">
-                <iron-icon src="images/nis1.jpg" ></iron-icon>
+                <img id="logo" src="images/logo.png">
                 <span class="nameMenu">Menu</span>
             </paper-toolbar>
             
@@ -33,13 +34,9 @@
                     <span>Home</span>
                 </a>
 
-                <a data-route="journal" href="{{baseUrl}}journal">
-                    <iron-icon icon="social:school" class="menu-icon"></iron-icon>
-                    <span>Electronic Journal</span>
-                </a>
-                
+                          
                  <a data-route="make" href="{{baseUrl}}make">
-                    <iron-icon src="images/desktop-classic.png" class="menu-icon"></iron-icon>
+                    <iron-icon icon="dashboard" class="menu-icon"></iron-icon>
                     <span>Make working place</span>
                 </a>
 
@@ -67,7 +64,7 @@
             <paper-icon-button src="images/square.png"></paper-icon-button>
             <paper-icon-button icon="view-agenda"></paper-icon-button>
             <paper-icon-button icon="view-agenda" id="two"></paper-icon-button>
-            <paper-icon-button src="images/view-parallel.png" id="three"></paper-icon-button>
+            <paper-icon-button src="images/collage.png" id="three"></paper-icon-button>
             <paper-icon-button src="images/view-grid%20.png" id="four"></paper-icon-button>
                 </div>
                          
@@ -90,11 +87,8 @@
                       </paper-material>
                         
                     </section>
-                    <section data-route="journal" tabindex="-1">
-                        <div class="siteContainer">
-                            <iframe width="854" height="480" src=""  class="noSplit"></iframe>
-                        </div>
-                    </section>
+                   
+                    
                     
                 <section data-route="make" tabindex="-1">
                        <paper-material elevation="1">
@@ -109,10 +103,11 @@
                     
                 <section data-route="add" tabindex="-1">
                       <paper-material elevation="1" id="URL">
-                        <h1>Add link</h1>
-                        <paper-input placeholder="Enter URL" id="inputUrl"></paper-input>
-                        <paper-button class="button" onclick="addUrl()">Add</paper-button>
-                        <paper-button class="button" onclick="deleteUrl()">Delete</paper-button>
+                        <h1 class="url" >Add link</h1>
+                         <paper-input placeholder="Enter Name" class="url" id="inputName" url ></paper-input>
+                        <paper-input placeholder="Enter URL" id="inputUrl"class="url"  url ></paper-input>
+                        <paper-button class="button url" onclick="addUrl()">Add</paper-button>
+                        <paper-button class="button url" onclick="deleteUrl()">Delete</paper-button>
                        </paper-material>
                         <div id="firstColumn" class="column">  
                         </div>    
@@ -148,19 +143,19 @@
             }
                  var index1;
             function showUrl(n){
-         var db = openDatabase('mydb', '1.0', 'WorkingPlace', 1024);
+         var db = openDatabase('mydb', '1.0', 'WorkPlace', 1024);
          var msg;
          db.transaction(function (tx) {
-            tx.executeSql('CREATE TABLE IF NOT EXISTS URLS (Url)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS URL (Name, Url)');
          });
                 
          db.transaction(function (tx) {
-            tx.executeSql('SELECT * FROM URLS', [], function (tx, results) {
+            tx.executeSql('SELECT * FROM URL', [], function (tx, results) {
                var len = results.rows.length, i;
                msg='';
              		
                for (i = 0; i < len; i++){
-                  msg = "<div class='container'><a href=" + results.rows.item(i).Url + " onclick='newMyWindow(this.href); return false;'><paper-material elevation='1' id='URL1'><h1><b>" + results.rows.item(i).Url + "</b></h1></paper-material></a><paper-icon-button id='black' icon='close' onclick=closethis('" + results.rows.item(i).Url + "')></paper-icon-button></div>";
+                  msg = "<div class='container'><a href=" + results.rows.item(i).Url + " target='_blank'><paper-material elevation='1' id='URL1'><h1><b>" + results.rows.item(i).Name + "</b></h1><c>" + results.rows.item(i).Url + "</c></paper-material></a><paper-icon-button id='black' icon='close' onclick=closethis('" + results.rows.item(i).Url + "')></paper-icon-button></div>";
                 index1 = column(n);
                 var select;
                if (index1%3==1)
@@ -185,17 +180,17 @@
                 
             function addUrl(){
               var inputUrl = document.getElementById('inputUrl');
-               
-              var db = openDatabase('mydb', '1.0', 'WorkingPlace', 1024);
+              var inputName = document.getElementById('inputName');
+              var db = openDatabase('mydb', '1.0', 'WorkPlace', 1024);
              var msg;
              msg='';
          db.transaction(function (tx) {
-            tx.executeSql('CREATE TABLE IF NOT EXISTS URLS (Url)');
-            tx.executeSql('INSERT INTO URLS (Url) VALUES ("' +inputUrl.value+'")');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS URL (Name, Url)');
+            tx.executeSql('INSERT INTO URL (Name, Url) VALUES ("' +inputName.value+'", "' +inputUrl.value+'")');
          });
                  
          db.transaction(function (tx) {
-                  msg = "<div class='container'><a href=" + inputUrl.value + " onclick='newMyWindow(this.href); return false;'><paper-material elevation='1' id='URL1'><h1><b>" + inputUrl.value + "</b></h1></paper-material></a><paper-icon-button id='black' icon='close' onclick=closethis('" + inputUrl.value + "') ></paper-icon-button></div>";
+                  msg = "<div class='container'><a href=" + inputUrl.value + " target='_blank'><paper-material elevation='1' id='URL1'><h1><b>" + inputName.value + "</b></h1><c>" + inputUrl.value + "</c></paper-material></a><paper-icon-button id='black' icon='close' onclick=closethis('" + inputUrl.value + "') ></paper-icon-button></div>";
                    var index1;
                  index1 = column(index);
               
@@ -221,9 +216,9 @@
             
                 
             function deleteUrl(){
-         var db = openDatabase('mydb', '1.0', 'WorkingPlace', 2 * 1024 * 1024);
+         var db = openDatabase('mydb', '1.0', 'WorkPlace', 2 * 1024 * 1024);
          db.transaction(function (tx) {
-            tx.executeSql('DELETE FROM URLS');
+            tx.executeSql('DELETE FROM URL');
              document.querySelector('#firstColumn').innerHTML ='';
              document.querySelector('#secondColumn').innerHTML ='';
              document.querySelector('#thirdColumn').innerHTML ='';
@@ -236,9 +231,9 @@
 };
     
 function closethis(e) {
-    var db = openDatabase('mydb', '1.0', 'WorkingPlace', 2 * 1024 * 1024);
+    var db = openDatabase('mydb', '1.0', 'WorkPlace', 2 * 1024 * 1024);
     db.transaction(function (tx) {
-    tx.executeSql("DELETE FROM URLS WHERE Url='"+e+"'");
+    tx.executeSql("DELETE FROM URL WHERE Url='"+e+"'");
     document.querySelector('#firstColumn').innerHTML ='';
     document.querySelector('#secondColumn').innerHTML ='';
     document.querySelector('#thirdColumn').innerHTML ='';
@@ -246,6 +241,9 @@ function closethis(e) {
     showUrl(index);        
               }); 
 };
+    
+
+    
 </script>
                 
                 
