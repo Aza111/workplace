@@ -64,7 +64,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   #drawerToolbar {
     color: var(--secondary-text-color);
     background-color: var(--drawer-menu-color);
-    border-bottom: var(--drawer-toolbar-border-color);
   }
 
   #drawerToolbar .menu-name {
@@ -76,16 +75,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   }
 
   paper-menu {
-    --paper-menu-selected-item: {
-      color: var(--primary-color);
-    }
-
-    --paper-menu-focused-item-after: {
-      background: var(--primary-color);
-    }
+      margin-top: 300px;
   }
-
   paper-menu iron-icon {
+    width: 30px;
+    height: 30px;
     margin-right: 33px;
     opacity: 0.54;
   }
@@ -96,16 +90,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     text-decoration: none;
     color: var(--menu-link-color);
-    font-family: 'Roboto', 'Noto', sans-serif;
+   font-family: 'Muli', sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;
     min-height: 48px;
-    padding: 0 16px;
+    padding: 0px 16px;
+    margin-top: 15px;
   }
 
+    #mainToolbar{
+    margin-left: 75px;
+    }
+    
   #mainToolbar.tall .app-name {
     font-size: 40px;
     font-weight: 300;
@@ -142,6 +141,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   /* Height of the scroll area */
   .content {
     height: 900px;
+    margin-left: 75px;
   }
 
   section[data-route="home"] paper-material {
@@ -153,12 +153,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   }
 
   paper-material {
-    border-radius: 2px;
+    border: solid #ffffff 0px;
+    border-radius:0px;
     height: 100%;
     padding: 16px 0 16px 0;
     width: calc(98.66% - 16px);
     margin: 16px auto;
-    background: white;
+    background:rgb(251, 251, 251);
+    box-shadow: #ffffff 0px 0px 0px 0px;
+   font-family: 'Muli', sans-serif;
   }
 
   #toast .toast-hide-button {
@@ -196,7 +199,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     #drawer.paper-drawer-panel > [drawer] {
       border-right: 1px solid rgba(0, 0, 0, 0.14);
-      background: #fff
+      background: white;
+      width: 330px;
     }
 
     iron-pages {

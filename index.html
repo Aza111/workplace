@@ -5,17 +5,17 @@
    
     <title>Working place</title>
     <meta http-equiv="Content-Type" content="text/html">
-    <link rel="shortcut icon" type="image/x-icon" href="images/logo.png">
+    <link rel="shortcut icon" type="image/x-icon" href="images/logo-icon.png">
     <link rel="stylesheet" href="main.css">
     <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
     <script src="bower_components/webcomponentsjs/HTMLImports.js"></script>
     <script src="bower_components/webcomponentsjs/MutationObserver.js"></script>
     <link rel="import" href="elements.html">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:700" rel="stylesheet">
     <link rel="import" href="styles/app-theme.html">
     <style is="custom-style" include="shared-styles"></style>
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 </head>
-<body>
+<body onmousemove="initClock()">
     <template is="dom-bind" id="app">
        <paper-drawer-panel id="paperDrawerPanel">
         <paper-scroll-header-panel drawer fixed>
@@ -23,26 +23,25 @@
             <!-- Drawer Toolbar -->
             <paper-toolbar id="drawerToolbar">
                 <img id="logo" src="images/logo.png">
-                <span class="nameMenu">Menu</span>
             </paper-toolbar>
             
              <!-- Drawer Content -->
             <paper-menu class="app-menu" attr-for-selected="data-route" selected="[[route]]">
 
                 <a data-route="home" href="{{baseUrl}}">
-                    <iron-icon icon="home" class="menu-icon"></iron-icon>
+                    
                     <span>Home</span>
                 </a>
 
                           
                  <a data-route="make" href="{{baseUrl}}make">
-                    <iron-icon icon="dashboard" class="menu-icon"></iron-icon>
-                    <span>Make working place</span>
+                   
+                    <span>Working place</span>
                 </a>
 
                 <a data-route="add" href="{{baseUrl}}add">
-                    <iron-icon icon="add" class="menu-icon"></iron-icon>
-                    <span>Add link</span>
+                  
+                    <span>Links</span>
                     
                 </a>
                
@@ -56,7 +55,7 @@
                 
                 <!-- Application name -->
                 <div class="middle middle-container">
-                    <div class="app-name">Working place V0.1</div>
+                    <div class="app-name">Workplace V0.4</div>
                 </div>
                    <div class="bottom bottom-container">
             <div class="bottom-title">Split types</div>
@@ -75,7 +74,7 @@
                 <iron-pages attr-for-selected="data-route" selected="{{route}}">
                     <section data-route="home" tabindex="-1">
                         
-                      <paper-material elevation="1">
+                      <paper-material elevation="1" id="welcome">
                         <h1 class="page-heading">Welcome!</h1>
                         <p>This is prototype of working place for students of Nazabayev Intellectual Schools.</p>
                         <p>On this site you can:</p>
@@ -86,14 +85,23 @@
                         </ul>
                       </paper-material>
                         
+                        <paper-material id="clock">
+                        <div class="clock">
+                            <img id="hourHand" class="hands" src="images/hour_hand.png" alt="">
+                            <img id="minuteHand" class="hands" src="images/minute_hand.png" alt="">
+                            <img id="secondHand" class="hands" src="images/second_hand.png" alt="">
+                        </div>
+                        <h1 id="clockLabel">CURRENT TIME</h1>
+                        
+                        </paper-material>
+                      
                     </section>
                    
                     
                     
                 <section data-route="make" tabindex="-1">
                        <paper-material elevation="1">
-                        <h1>Make your own working place</h1>
-                        <h3>Available links</h3>
+                         
                        </paper-material>
                 </section>
                     
@@ -107,8 +115,7 @@
                          <paper-input placeholder="Enter Name" class="url" id="inputName" url ></paper-input>
                         <paper-input placeholder="Enter URL" id="inputUrl"class="url"  url ></paper-input>
                         <paper-button class="button url" onclick="addUrl()">Add</paper-button>
-                        <paper-button class="button url" onclick="deleteUrl()">Delete</paper-button>
-                       </paper-material>
+                     </paper-material>
                         <div id="firstColumn" class="column">  
                         </div>    
                        
@@ -116,6 +123,9 @@
                         </div>
                         
                         <div id="thirdColumn" class="column">
+                        </div>
+                    
+                        <div id="fourthColumn" class="column">
                         </div>
                 </section>
                     
@@ -136,7 +146,6 @@
 <script>
           var index=0;
        showUrl(index);
-                
             function column(n){
                index++;
                return index;
@@ -155,20 +164,24 @@
                msg='';
              		
                for (i = 0; i < len; i++){
-                  msg = "<div class='container'><a href=" + results.rows.item(i).Url + " target='_blank'><paper-material elevation='1' id='URL1'><h1><b>" + results.rows.item(i).Name + "</b></h1><c>" + results.rows.item(i).Url + "</c></paper-material></a><paper-icon-button id='black' icon='close' onclick=closethis('" + results.rows.item(i).Url + "')></paper-icon-button></div>";
+                  msg = "<div class='container'><a href=" + results.rows.item(i).Url + " target='_blank'><paper-material elevation='1' id='URL1'><div id='blue'></div><div id='white'></div><h1><b>" + results.rows.item(i).Name + "</b></h1><c>" + results.rows.item(i).Url + "</c></paper-material></a><paper-icon-button id='black' icon='close' onclick=closethis('" + results.rows.item(i).Url + "')></paper-icon-button></div>";
                 index1 = column(n);
                 var select;
-               if (index1%3==1)
+               if (index1%4==1)
                    {
                        select='#firstColumn';
                    }
-                if(index1%3==2)
+                if(index1%4==2)
                     {
                         select='#secondColumn'
                     }
-                 if(index1%3==0)
+                 if(index1%4==3)
                     {
                         select='#thirdColumn'
+                    }
+                 if(index1%4==0)
+                    {
+                        select='#fourthColumn'
                     }
                 document.querySelector(select).innerHTML +=  msg;
                }
@@ -190,22 +203,26 @@
          });
                  
          db.transaction(function (tx) {
-                  msg = "<div class='container'><a href=" + inputUrl.value + " target='_blank'><paper-material elevation='1' id='URL1'><h1><b>" + inputName.value + "</b></h1><c>" + inputUrl.value + "</c></paper-material></a><paper-icon-button id='black' icon='close' onclick=closethis('" + inputUrl.value + "') ></paper-icon-button></div>";
+                  msg = "<div class='container'><a href=" + inputUrl.value + " target='_blank'><paper-material elevation='1' id='URL1'><div id='blue'></div><div id='white'></div><h1><b>" + inputName.value + "</b></h1><c>" + inputUrl.value + "</c></paper-material><paper-icon-button id='black' icon='close' onclick=closethis('" + inputUrl.value + "') ></paper-icon-button></a></div>";
                    var index1;
                  index1 = column(index);
               
                 var select;
-               if (index1%3==1)
+              if (index1%4==1)
                    {
                        select='#firstColumn';
                    }
-                if(index1%3==2)
+                if(index1%4==2)
                     {
-                        select='#secondColumn';
+                        select='#secondColumn'
                     }
-                 if(index1%3==0)
+                 if(index1%4==3)
                     {
                         select='#thirdColumn'
+                    }
+                 if(index1%4==0)
+                    {
+                        select='#fourthColumn'
                     }
                 document.querySelector(select).innerHTML +=  msg;
                 
@@ -215,16 +232,7 @@
             };
             
                 
-            function deleteUrl(){
-         var db = openDatabase('mydb', '1.0', 'WorkPlace', 2 * 1024 * 1024);
-         db.transaction(function (tx) {
-            tx.executeSql('DELETE FROM URL');
-             document.querySelector('#firstColumn').innerHTML ='';
-             document.querySelector('#secondColumn').innerHTML ='';
-             document.querySelector('#thirdColumn').innerHTML ='';
-             index = 0;
-              });
-            };
+            
                 
  function newMyWindow(e) {
   window.open(e, '', 'scrollbars=1,height=980,width='+screen.availWidth);
@@ -237,15 +245,35 @@ function closethis(e) {
     document.querySelector('#firstColumn').innerHTML ='';
     document.querySelector('#secondColumn').innerHTML ='';
     document.querySelector('#thirdColumn').innerHTML ='';
+    document.querySelector('#fourthColumn').innerHTML ='';
     index = 0;
     showUrl(index);        
               }); 
 };
     
+function initClock() {
+    var hourHand = document.getElementById('hourHand');
+    var minuteHand = document.getElementById('minuteHand');
+    var secondHand = document.getElementById('secondHand');
+	var date = new Date();
+	var hour = date.getHours() % 12; // 0 - 23
+	var minute = date.getMinutes();
+	var second = date.getSeconds();
 
+	var hourDeg = (hour * 30) + (0.5 * minute); // every hour, 30 deg. 30 / 60
+	var minuteDeg = (minute * 6) + (0.1 * second); // every minute, 6 deg. 6 / 60
+	var secondDeg = second * 6; // 360 / 60
     
+  	hourHand.style.transform = 'rotate(' + hourDeg + 'deg)';
+	minuteHand.style.transform = 'rotate(' + minuteDeg + 'deg)';
+	secondHand.style.transform = 'rotate(' + secondDeg + 'deg)';
+
+	setTimeout(initClock, 1000);
+};
+
+
 </script>
-                
+   
                 
            
 </body>

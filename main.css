@@ -1,15 +1,6 @@
-/*
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
-*/
-
 body {
-  background: url(styles/images/gray-background-with-wood-texture_1048-4757.jpg);
-  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: #1f2025;
+  font-family: 'Muli', sans-serif;
   color: #333;
 }
 
@@ -19,18 +10,20 @@ body {
 
 #logo
 {
-    width: 40px
+    margin-left: -25px;
+    margin-top: 400px;
+    width: 350px;
 }
 
 span
 {
-
-    font-family: 'Noto Sans', 'Helvetica Neue',   Helvetica, Arial, sans-serif;
+   font-family: 'Muli', sans-serif;
+    font-size: 20px;
 }
 
 #mainToolbar
 {
-    background-image: url(styles/images/fabric-textures-matte-blue.jpg);
+    background: #446faa;
     background-size:contain;
   
 }
@@ -58,8 +51,17 @@ span
 }
 
 .button
+{ 
+   color: white;
+   background: #7892b1;
+   font-family: 'Muli', sans-serif;
+}
+
+.button:hover
 {
-    box-shadow: 1px 1px 1px #8b8b8b;
+    background: #446faa;
+    transition: 0.5s;
+    color: white;
 }
 
 .page-heading
@@ -90,30 +92,38 @@ span
 {
     display: inline-block;
     margin-right: 30px;
+    
 }
 
 #URL1
 {
-    width: 350px;
-    height: 200px;
-    transition: .4s;
+    width: 250px;
+    height: 250px;
+    transition: .5s;
     margin-left: 0px;
 }
 
 #URL1:hover{
-    box-shadow: #505050 1px 1px 10px 3px; 
+    background: #7892b1; 
+}
+
+
+#URL1:hover #white{
+   width: 200px; 
 }
 
 paper-material
 {
-    border: solid 1px #cecdcd
+    border: solid 1px #cecdcd;
+    display: inline-block;
+    
 }
 
     
 .column
 {
     display: inline-block;
-    width: 400px;
+    width: 300px;
     height: 500px;
 }
 #firstColumn
@@ -124,19 +134,25 @@ paper-material
 #secondColumn
 {
     position: absolute;
-    margin-left: 547px;
+    margin-left: 372px;
 }
 
 #thirdColumn
 {
     position: absolute;
-    margin-left: 1097px;
+    margin-left: 746px;
+}
+
+#fourthColumn
+{
+    position: absolute;
+    margin-left: 1122px;
 }
 
 .container
 {
-    padding-bottom: 48px;
-    width: 400px;
+    padding-bottom: 120px;
+    width: 290px;
     height: 200px;
 }
 
@@ -144,9 +160,34 @@ paper-material
 {
     color: #afafaf;
     float: right;
-    margin-top: -250px;
+    margin-top: -290px;
     height: 40px;
     width: 40px;
+}
+
+#black:hover
+{
+    color: #1d1d1d
+}
+
+#blue
+{
+    position: absolute;
+    width: 200px;
+    height: 20px;
+    background: #7892b1;
+    margin: 0px 0px 0 -30px;
+    transition: .5s;
+}
+
+#white
+{
+    position: absolute;
+    width: 0px;
+    height: 20px;
+    background: #ffffff;
+    margin: 0px -30px;
+    transition: .4s; 
 }
 
 a
@@ -174,8 +215,73 @@ c
     width: 350px;
 }
 
-#black:hover
+
+h1
 {
-    color: #4646ff
+   font-family: 'Muli', sans-serif;
 }
 
+p
+{
+    font-family: 'Muli', sans-serif;
+    font-size: 20px;
+}
+
+ul
+{
+    font-family: 'Muli', sans-serif;
+    font-size: 18px;
+}
+
+
+
+.clock {
+    margin-left: -9px;
+	position: relative;
+	width: 300px;
+	height: 300px;
+    border: outset 10px #446faa;
+    border-radius: 50%;
+}
+
+.clock:after {
+	position: absolute;
+	content: '';
+	background: #808080;
+	width: 20px;
+	height: 20px;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	border-radius: 50%;
+}
+
+.hands {
+	position: absolute;
+	top: 0;
+	left: 0;
+    margin: -50px 0px 0px -50px;
+}
+
+#clock
+{
+    height: 450px;
+    width: 300px;    
+    background: #fbfbfb;
+    position: relative;
+    margin: -366px 0px 0px 920px;
+}
+
+#clockLabel
+{
+    font-size: 40px;
+    padding-top: 30px;
+    border-top: solid 8px;
+    color: #5e6574;
+}
+
+#welcome
+{
+    margin-left: 0;
+    width: 800px;
+}

@@ -1,0 +1,93 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../the-grid.html">
+
+<link rel="import" href="grid-styles.html">
+
+<!--
+`<grid-wrapper>` is a container element that wraps <the-grid> for testing purpose and ensure its proper behavior when nested.
+
+Example:
+
+    <grid-wrapper></grid-wrapper>
+-->
+
+<dom-module id="grid-wrapper">
+    <template>
+        <style include="grid-styles">
+            :host {
+                display: block;
+            }
+        </style>
+
+        <div id="container">
+            
+            <the-grid cell-height="{{cellHeight}}" cell-width="{{cellWidth}}" cell-margin="{{cellMargin}}" col-count="{{colCount}}" row-count="{{rowCount}}" draggable resizable animated>
+                <dom-repeat items="{{boxes}}">
+                    <template>
+                        <tile col$="{{item.col}}" row$="{{item.row}}" height$="{{item.height}}" width$="{{item.width}}">
+                            <span>{{item.title}}</span>
+                            <span resize="left">│</span>
+                            <span resize="right">│</span>
+                            <span resize="top">─</span>
+                            <span resize="bottom">─</span>
+                            <span resize="top-right">┐</span>
+                            <span resize="top-left">┌</span>
+                            <span resize="bottom-right">┘</span>
+                            <span resize="bottom-left">└</span>
+                        </tile>
+                    </template>
+                </dom-repeat>
+                <div placeholder></div>
+            </the-grid>
+        </div>
+    </template>
+
+    <script>
+        class GridWrapper extends Polymer.Element {
+
+            static get is() { return 'grid-wrapper'; }
+
+            static get properties() {
+                return {
+                    boxes: {
+                        type: Array,
+                        value: function () {
+                            return [
+                                {title: '0', col: 0, row: 0, width: 16, height: 18},
+                                {title: '1', col: 16, row: 0, width: 16, height: 9},
+                                {title: '2', col: 16, row: 9, width: 16, height: 9},
+                             
+                            ];
+                        }
+                    },
+                    cellWidth: {
+                        type: Number,
+                        value: 30
+                    },
+                    cellHeight: {
+                        type: Number,
+                        value: 30
+                    },
+                    cellMargin: {
+                        type: Number,
+                        value: 3
+                    },
+                    rowCount: {
+                        type: Number,
+                        value: 18
+                    },
+                    colCount: {
+                        type: Number,
+                        value: 32
+                    }
+                }
+            }
+
+            constructor() {
+                super();
+            }
+        }
+
+        customElements.define(GridWrapper.is, GridWrapper);
+    </script>
+</dom-module>
