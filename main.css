@@ -73,7 +73,7 @@ span
 #URL
 {
     height:auto;
-    margin-left: 0px;
+    margin: 0px;
 }
 
 #inputName
@@ -122,6 +122,7 @@ paper-material
     
 .column
 {
+    padding-top: 35px;
     display: inline-block;
     width: 300px;
     height: 500px;
@@ -212,7 +213,7 @@ c
     margin-top: 90px;
     height: 120px;
     word-break: break-all;
-    width: 350px;
+    width: 250px;
 }
 
 
@@ -236,10 +237,10 @@ ul
 
 
 .clock {
-    margin-left: -9px;
+    margin-left: 20px;
 	position: relative;
-	width: 300px;
-	height: 300px;
+	width: 200px;
+	height: 200px;
     border: outset 10px #446faa;
     border-radius: 50%;
 }
@@ -260,28 +261,124 @@ ul
 	position: absolute;
 	top: 0;
 	left: 0;
-    margin: -50px 0px 0px -50px;
+    margin: -100px 0px 0px -100px;
 }
 
 #clock
 {
-    height: 450px;
-    width: 300px;    
-    background: #fbfbfb;
+    height: 300px;
+    width: 250px;    
+    background: url(images/Cloud-And-Sunrise-Sunset-Wallpapers.jpg);
+    background-position: right;
     position: relative;
-    margin: -366px 0px 0px 920px;
+    margin: -364px 0px 0px 745px;
+    background-size: cover;
 }
 
 #clockLabel
 {
-    font-size: 40px;
+    font-size: 30px;
     padding-top: 30px;
-    border-top: solid 8px;
+    border-top: solid 5px;
     color: #5e6574;
+    text-align: center;
 }
 
 #welcome
 {
     margin-left: 0;
-    width: 800px;
+    width: 625px;
+    height: 300px;
+}
+
+#linkDesk .column .container paper-material
+{
+    width: 100px;
+    height: 100px;
+}
+
+#linkDesk #secondColumn
+{
+    margin-left: 175px;
+}
+
+
+#linkDesk #thirdColumn
+{
+    margin-left: 350px;
+}
+
+
+#linkDesk #fourthColumn
+{
+    margin-left: 525px;
+}
+
+#linkDesk .container 
+{
+    height:10px;
+    width: 10px;
+}
+
+#linkDesk .container c
+{
+    opacity: 0;
+    width: 100px;
+    height: 100px;
+}
+
+#linkDesk .container #black
+{
+    display: none;
+}
+
+#linkDesk .container #blue
+{
+    width: 160px;
+    height: 10px;
+}
+
+#linkDesk .container #white
+{
+    width: 0px;
+    height: 10px;
+}
+
+#linkDesk .container #URL1:hover #white
+{
+    width: 160px;
+}
+
+#linkDesk .container #URL1:hover 
+{
+    height: 235px;
+    z-index: 1;
+}
+
+#linkDesk .container #URL1 b
+{
+    width: 100px;
+    height: 50px;
+}
+
+#linkDesk .container #URL1:hover c
+{
+    display: block;
+    transition: 1s;
+    opacity: 1;
+}
+
+#linkDeskLabel
+{
+    margin: 0px;
+    margin-top: 50px;
+    width: 625px;
+}
+
+#addLink
+{
+    position: absolute;
+    margin: -55px 0px 0px 580px;
+    height: 50px;
+    width: 50px;
 }

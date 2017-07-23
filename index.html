@@ -76,13 +76,9 @@
                         
                       <paper-material elevation="1" id="welcome">
                         <h1 class="page-heading">Welcome!</h1>
-                        <p>This is prototype of working place for students of Nazabayev Intellectual Schools.</p>
-                        <p>On this site you can:</p>
-                        <ul>
-                          <li>Open school journal</li>      
-                          <li>Organize your working place with special split types</li>     
-                          <li>Save your own working place locally to use it again</li>
-                        </ul>
+                        <p>This is prototype of working place.</p>
+                        Wise busy past both park when an ye no. Nay likely her length sooner thrown sex lively income. The expense windows adapted sir. Wrong widen drawn ample eat off doors money. Offending belonging promotion provision an be oh consulted ourselves it. Blessing welcomed ladyship she met humoured sir breeding her. Six curiosity day assurance bed necessary. 
+
                       </paper-material>
                         
                         <paper-material id="clock">
@@ -94,7 +90,23 @@
                         <h1 id="clockLabel">CURRENT TIME</h1>
                         
                         </paper-material>
-                      
+                      <paper-material id="linkDeskLabel">
+                        <h1>LINKS</h1>
+                          <a data-route="add" href="{{baseUrl}}add"><paper-icon-button icon="add" id="addLink" onclick="data-route = 'add'"></paper-icon-button></a>
+                      </paper-material>
+                      <div id="linkDesk">
+                      <div id="firstColumn" class="column">  
+                        </div>    
+                       
+                        <div id="secondColumn" class="column">
+                        </div>
+                        
+                        <div id="thirdColumn" class="column">
+                        </div>
+                    
+                        <div id="fourthColumn" class="column">
+                        </div>
+                     </div>
                     </section>
                    
                     
@@ -116,17 +128,8 @@
                         <paper-input placeholder="Enter URL" id="inputUrl"class="url"  url ></paper-input>
                         <paper-button class="button url" onclick="addUrl()">Add</paper-button>
                      </paper-material>
-                        <div id="firstColumn" class="column">  
-                        </div>    
-                       
-                        <div id="secondColumn" class="column">
-                        </div>
-                        
-                        <div id="thirdColumn" class="column">
-                        </div>
                     
-                        <div id="fourthColumn" class="column">
-                        </div>
+                        <div id="linkDesk2"></div>
                 </section>
                     
                      
@@ -184,11 +187,12 @@
                         select='#fourthColumn'
                     }
                 document.querySelector(select).innerHTML +=  msg;
+                document.querySelector('#linkDesk2').innerHTML =   document.querySelector('#linkDesk').innerHTML;
                }
                 
             }, null);
          });
-           
+          
        };
                 
             function addUrl(){
@@ -225,7 +229,7 @@
                         select='#fourthColumn'
                     }
                 document.querySelector(select).innerHTML +=  msg;
-                
+                document.querySelector('#linkDesk2').innerHTML =   document.querySelector('#linkDesk').innerHTML;
              });  
                 var seize = document.getElementById("URL1");
                 
@@ -247,7 +251,8 @@ function closethis(e) {
     document.querySelector('#thirdColumn').innerHTML ='';
     document.querySelector('#fourthColumn').innerHTML ='';
     index = 0;
-    showUrl(index);        
+    showUrl(index);  
+     document.querySelector('#linkDesk2').innerHTML =   document.querySelector('#linkDesk').innerHTML;
               }); 
 };
     
@@ -259,6 +264,12 @@ function initClock() {
 	var hour = date.getHours() % 12; // 0 - 23
 	var minute = date.getMinutes();
 	var second = date.getSeconds();
+    if (date.getHours() >= 22 || date.getHours() <=6)
+        {
+            var clock = document.getElementById("clock");
+            clock.style.background = "url(images/Image-cloud-wallpaper-HD.jpeg)";
+            clock.style.backgroundSize = "cover";
+        }
 
 	var hourDeg = (hour * 30) + (0.5 * minute); // every hour, 30 deg. 30 / 60
 	var minuteDeg = (minute * 6) + (0.1 * second); // every minute, 6 deg. 6 / 60
