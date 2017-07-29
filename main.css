@@ -4,21 +4,22 @@ body {
   color: #333;
 }
 
+
+
 .page-title {
   outline: none;
-}
-
-#logo
-{
-    margin-left: -25px;
-    margin-top: 400px;
-    width: 350px;
 }
 
 span
 {
    font-family: 'Muli', sans-serif;
     font-size: 20px;
+}
+
+#logo
+{
+    height: 60px;
+    margin: auto;
 }
 
 #mainToolbar
@@ -74,6 +75,7 @@ span
 {
     height:auto;
     margin: 0px;
+    width: 1370px;''
 }
 
 #inputName
@@ -238,6 +240,7 @@ ul
 
 .clock {
     margin-left: 20px;
+    margin-top: 40px;
 	position: relative;
 	width: 200px;
 	height: 200px;
@@ -267,7 +270,7 @@ ul
 #clock
 {
     height: 300px;
-    width: 250px;    
+    width: 615px;    
     background: url(images/Cloud-And-Sunrise-Sunset-Wallpapers.jpg);
     background-position: right;
     position: relative;
@@ -275,14 +278,7 @@ ul
     background-size: cover;
 }
 
-#clockLabel
-{
-    font-size: 30px;
-    padding-top: 30px;
-    border-top: solid 5px;
-    color: #5e6574;
-    text-align: center;
-}
+
 
 #welcome
 {
@@ -381,4 +377,59 @@ ul
     margin: -55px 0px 0px 580px;
     height: 50px;
     width: 50px;
+}
+
+#refresh
+{
+    position: absolute;
+    margin: -55px 0px 0px 530px;
+    height: 50px;
+    width: 50px;
+}
+
+
+#dayLabel
+{
+    font-size: 70px;
+    padding: 0;
+    margin: 50px 0px 0px 300px;
+    color: #446faa;
+}
+
+#monthLabel
+{
+    font-size: 40px;
+    padding: 0;
+    color: #7892b1 ;
+    margin-top: -25px;
+    margin-left: 400px;
+}
+
+#weekLabel
+{
+    
+    font-size: 40px;
+    margin: 47px 0 0 310px;
+    color: #7c7c7c;
+    padding-top: 20px;
+    border-top: solid 4px;
+}
+
+#bench
+{
+    margin-left: 1000px;
+    position: absolute;
+    width: 300px;
+    height: 500px;
+}
+
+#splitTypes
+{
+    background: #7892b1;
+    width: 220px;
+}
+#underMenu
+{
+   margin-left: 80px;
+    
 }
